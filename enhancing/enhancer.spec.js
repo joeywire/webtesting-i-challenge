@@ -29,4 +29,24 @@ describe('Item Tests', () => {
       expect(item.enhancement).toBe(20);
     });
   });
+  describe('enhancement failure', () => {
+    // beforeEach(() => enhancer.fail(item));
+    it('if enhancement < 15 durability of item is decreased by 5', () => {
+      enhancer.repair(item);
+      item.enhancement = 14;
+      enhancer.fail(item); 
+      expect(item.durability).toBe(95);
+    });
+    it('enhancement >= 15 durability is decreased by 10', () => {
+      enhancer.repair(item);
+      item.enhancement = 15;
+      enhancer.fail(item);
+      expect(item.durability).toBe(90);
+    });
+    it('if enhancement > 16 , enhancement decreases by one', () => {
+      item.enhancement = 17;
+      enhancer.fail(item); 
+      expect(item.enhancement).toBe(16);
+    })
+  });
 });

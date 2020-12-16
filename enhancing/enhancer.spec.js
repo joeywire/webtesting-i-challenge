@@ -8,9 +8,6 @@ describe('Item Tests', () => {
     item.durability = 0;
     item.enhancement = 0;
   });
-  test('sanity check', () => {
-    expect(2+2).toBe(4);
-  });
   test('item repair sets durability to max', () => {
     enhancer.repair(item);
     expect(item.durability).toBe(100);
@@ -30,15 +27,13 @@ describe('Item Tests', () => {
     });
   });
   describe('enhancement failure', () => {
-    // beforeEach(() => enhancer.fail(item));
+    beforeEach(() => enhancer.repair(item));
     it('if enhancement < 15 durability of item is decreased by 5', () => {
-      enhancer.repair(item);
       item.enhancement = 14;
       enhancer.fail(item); 
       expect(item.durability).toBe(95);
     });
     it('enhancement >= 15 durability is decreased by 10', () => {
-      enhancer.repair(item);
       item.enhancement = 15;
       enhancer.fail(item);
       expect(item.durability).toBe(90);
@@ -47,6 +42,13 @@ describe('Item Tests', () => {
       item.enhancement = 17;
       enhancer.fail(item); 
       expect(item.enhancement).toBe(16);
-    })
+    });
+  });
+  describe('get enhancer function', () => {
+    it('get correclty alters item name', () => {
+      item.enhancement = 5;
+      enhancer.get(item);
+      expect(item.name).toBe('sword[+5]');
+    });
   });
 });

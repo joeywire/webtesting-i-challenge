@@ -2,7 +2,7 @@
   "name": "webtesting-i-challenge",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watchAll"
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
